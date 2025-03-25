@@ -6,6 +6,7 @@ import { ApiResponse } from "../utils/apiResponse.js"
 import jwt from "jsonwebtoken"
 
 
+
 const registerUser = asyncHandler(async (req, res) => {
     const { fullName, email, phoneNumber, password, role } = req.body;
     if (!fullName || !email || !phoneNumber || !password || !role) {
@@ -56,7 +57,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const token = await jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' });
     const loginUser = await User.findById(user._id).select("-password")
-    
+
     return res
         .status(200)
         .cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSize: 'strict' })
@@ -83,16 +84,16 @@ const logout = asyncHandler(async (req, res) => {
 const updateProfile = asyncHandler(async (req, res) => {
     const { fullName, email, phoneNumber, bio, skills } = req.body;
     const file = req.file;
-    
-   
- 
+
+
+
 
 
     let skillsArray;
-     if(skills){
+    if (skills) {
         skillsArray = skills.split(",");
-     }
-    
+    }
+
     const userId = req.id;
     let user = await User.findById(userId);
     if (!user) {
@@ -102,16 +103,16 @@ const updateProfile = asyncHandler(async (req, res) => {
                 new ApiResponse(400, "User not found.")
             )
     }
-     
-    if(fullName) user.fullName = fullName
-    if(email) user.email = email
-    if(phoneNumber) user.phoneNumber = phoneNumber
-    if(bio) user.profile.bio = bio
-    if(skills) user.profile.skills = skillsArray
-    
-        
 
-    
+    if (fullName) user.fullName = fullName
+    if (email) user.email = email
+    if (phoneNumber) user.phoneNumber = phoneNumber
+    if (bio) user.profile.bio = bio
+    if (skills) user.profile.skills = skillsArray
+
+
+
+
 
 
 

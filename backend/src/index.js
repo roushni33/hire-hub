@@ -7,6 +7,7 @@ import userRouter from "../routes/user.route.js";
 import companyRouter from "../routes/company.route.js";
 import jobRouter from "../routes/job.route.js";
 import applicationRouter from "../routes/application.route.js";
+import errorHandler from "../middlewares/errorHandler.js";
 
 
 dotenv.config({ path: './.env' });
@@ -32,7 +33,8 @@ app.use("/api/v1/job" , jobRouter);
 app.use("/api/v1/application", applicationRouter);
 
 
-
+// error Handler
+app.use(errorHandler)
 
 app.listen(PORT, () => {
     connectDB();
