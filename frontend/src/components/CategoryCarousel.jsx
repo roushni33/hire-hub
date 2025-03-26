@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, CarouselContent, CarouselItem } from './ui/Carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/Carousel';
 import { Button } from './ui/Button';
 
 const category = [
@@ -20,12 +20,14 @@ const CategoryCarousel = () => {
                 <CarouselContent>
                     {category.map((cat, index) => (
                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                            
-                            
-                          <Button>{cat}</Button>
+
+
+                            <Button variant="outline" className='rounded-full '>{cat}</Button>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
             </Carousel>
         </div>
     )
