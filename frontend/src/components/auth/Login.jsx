@@ -8,7 +8,7 @@ import { Button } from '../ui/button'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { USER_API_END_POINT } from '../../utils/constant'
-import { setLoading } from '../../redux/authSlice'
+import { setLoading, setUser } from '../../redux/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Loader2 } from 'lucide-react'
 
@@ -42,8 +42,9 @@ const Login = () => {
 
 
             if (res.data.success) {
-                toast.success(res.data.message)
+                dispatch(setUser(res.data.loginUser));
                 navigate("/")
+                toast.success(res.data.message)
             }
         } catch (error) {
             toast.error(error.response.data.message || "Something went wrong");
