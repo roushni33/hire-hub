@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Navbar from '../shared/navbar'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
+import Navbar from '../shared/Navbar'
+import { Label } from '../ui/Label'
+import { Input } from '../ui/Input'
 import { toast } from 'sonner'
 import { RadioGroup } from "../ui/radio-group"
-import { Button } from '../ui/button'
+import { Button } from '../ui/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { USER_API_END_POINT } from '../../utils/constant'
@@ -39,10 +39,9 @@ const Login = () => {
                 },
                 withCredentials: true,
             })
-
-
+            
             if (res.data.success) {
-                dispatch(setUser(res.data.loginUser));
+                dispatch(setUser(res.data.data.loginUser));
                 navigate("/")
                 toast.success(res.data.message)
             }

@@ -106,7 +106,9 @@ const updateProfile = asyncHandler(async (req, res) => {
 
     if (fullName) user.fullName = fullName
     if (email) user.email = email
-    if (phoneNumber) user.phoneNumber = phoneNumber
+    if (phoneNumber){
+        user.phoneNumber = parseInt(phoneNumber)
+    }
     if (bio) user.profile.bio = bio
     if (skills) user.profile.skills = skillsArray
 
@@ -131,5 +133,3 @@ export {
     logout,
     updateProfile,
 }
-
-// love u.. good night.. bbye <3 

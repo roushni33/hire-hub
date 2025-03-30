@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { User2, LogOut } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-    const user = false;
+
+
+    const { user } = useSelector(store => store.auth);
     return (
         <div className='bg-white'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16 px-16 '>
@@ -16,7 +19,7 @@ const Navbar = () => {
 
                 <div className='flex items-center gap-10'>
                     <ul className='flex items-center gap-5 font-medium'>
-                        <li><Link to ="/">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="/jobs">Jobs</Link></li>
                         <li><Link to="/browse">Browse</Link></li>
                     </ul>
@@ -42,15 +45,15 @@ const Navbar = () => {
                                                 <AvatarImage src="https://github.com/shadcn.png" />
                                             </Avatar>
                                             <div>
-                                                <h4 className='font-medium'>Roushni Kumari</h4>
-                                                <p className='text-sm text-muted-foreground'>Lorem ipsum dolor sit amet consectetur </p>
+                                                <h4 className='font-medium'>{user.fullName}</h4>
+                                                <p className='text-sm text-muted-foreground'>{user.role} </p>
                                             </div>
                                         </div>
 
                                         <div className="flex flex-col  text-gray-600">
                                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                                 <User2 />
-                                                <Button variant="link">View Profile</Button>
+                                                <Button variant="link"><Link to="/profile">View Profile</Link></Button>
                                             </div>
                                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                                 <LogOut />

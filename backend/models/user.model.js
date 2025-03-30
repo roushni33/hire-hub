@@ -30,10 +30,10 @@ const userSchema = new mongoose.Schema({
     },
 
     profile: {
-        bio: { type: String },
+        bio: { type: String, default: "" },
         skills: [{ type: String }],
-        resume: { type: String },
-        resumeOriginalName: { type: String },
+        resume: { type: String, default:"" },
+        resumeOriginalName: { type: String, default:"" },
         company: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
         profilePhoto: {
             type: String,
