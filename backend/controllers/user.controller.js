@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 import { ApiError } from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import jwt from "jsonwebtoken"
+import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 
 
@@ -12,6 +13,12 @@ const registerUser = asyncHandler(async (req, res) => {
     if (!fullName || !email || !phoneNumber || !password || !role) {
         throw new ApiError(400, "All fields are required.")
     };
+    const file = req.file;
+    let profileUrl;
+    if (file) {
+        const cloudResponse = await uploadOnCloudinary(file.path);
+        profileUrl = cloudResponse?.url;
+    }
     const existingUser = await User.findOne({ email });
     if (existingUser) {
         throw new ApiError(400, "User already exist with this email.")
@@ -24,6 +31,9 @@ const registerUser = asyncHandler(async (req, res) => {
         phoneNumber,
         password: hashedPassword,
         role,
+        profile: {
+            profilePhoto: profileUrl,
+        }
 
     })
     const createdUser = await User.findById(user._id).select("-password")
@@ -85,7 +95,11 @@ const updateProfile = asyncHandler(async (req, res) => {
     const { fullName, email, phoneNumber, bio, skills } = req.body;
     const file = req.file;
 
-
+    let pdfUrl;
+    if (file) {
+        const cloudResponse = await uploadOnCloudinary(file.path);
+        pdfUrl = cloudResponse?.url;
+    }
 
 
 
@@ -106,7 +120,7 @@ const updateProfile = asyncHandler(async (req, res) => {
 
     if (fullName) user.fullName = fullName
     if (email) user.email = email
-    if (phoneNumber){
+    if (phoneNumber) {
         user.phoneNumber = parseInt(phoneNumber)
     }
     if (bio) user.profile.bio = bio
@@ -114,7 +128,10 @@ const updateProfile = asyncHandler(async (req, res) => {
 
 
 
-
+    if (file) {
+        user.profile.resume = pdfUrl //save the cloudinary url
+        user.profile.resumeOriginalName = file.originalname //save the orignal file name
+    }
 
 
 

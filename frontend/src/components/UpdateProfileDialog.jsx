@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/Dialog'
-import { Label } from './ui/Label'
-import { Input } from './ui/Input'
-import { Button } from './ui/Button'
+import { Dialog,  DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/Dialog'
+import { Label } from './ui/label'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
 import { Loader2 } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
@@ -73,15 +73,18 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     return (
         <div>
             <Dialog open={open} >
-                <DialogContent className='sm:max-w-[425px]' onInteractOutside={() => setOpen(false)}>
+            
+                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto' onClick={() => setOpen(false)} >
                     <DialogHeader>
                         <DialogTitle>
                             Update Profile
+                            
                         </DialogTitle>
+                        
                     </DialogHeader>
                     <form onSubmit={submitHandler}>
                         <div className='grid gap-4 py-4'>
-                            <Label className="text-md font-bold text-right" htmlFor="name" > Full Name </Label>
+                            <Label className="text-md font`-bold text-right" htmlFor="name" > Full Name </Label>
                             <Input
                                 type="text"
                                 id='name' className='border border-gray-300 rounded-md p-2'
@@ -144,13 +147,19 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
                         </div>
                         <DialogFooter>
-                            {
+                        
+                               
+                        {
                                 loading ?
                                     <Button className="w-full my-4 cursor-pointer" disabled={loading}>
                                         <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                                         Please wait </Button>
                                     : <Button type="submit" className="w-full my-4 cursor-pointer">Update</Button>
                             }
+
+                        
+                            
+                            
                         </DialogFooter>
                     </form>
                 </DialogContent>

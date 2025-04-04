@@ -1,12 +1,12 @@
 import { Bookmark } from 'lucide-react'
 import React from 'react'
-import { Button } from './ui/Button'
+import { Button } from './ui/button'
 import { Avatar, AvatarImage } from './ui/Avatar'
-import {Badge}   from './ui/Badge'
+import { Badge } from './ui/Badge'
 import { useNavigate } from 'react-router-dom'
 
 
-const Job = () => {
+const Job = ({ job }) => {
   const navigate = useNavigate();
   const jobId = "erdfbn";
   return (
@@ -25,25 +25,25 @@ const Job = () => {
           </Avatar>
         </Button>
         <div>
-          <h1 className='font-medium text-lg'>Google</h1>
-          <p className='text-small text-gray-500'>India</p>
+          <h1 className='font-medium text-lg'>{job.company.name}</h1>
+          <p className='text-small text-gray-500'>{job.location}</p>
         </div>
       </div>
 
       <div>
-        <h1 className='font-bold text-lg my-2'>Title</h1>
-        <p className='text-sm text-gray-600'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit odio quos error? Illum ad, earum illo laborum provident officia quam quasi odit minima. Veniam minima possimus totam porro quaerat suscipit!</p>
+        <h1 className='font-bold text-lg my-2'>{job.title}</h1>
+        <p className='text-sm text-gray-600'>{job.description}</p>
       </div>
-      
+
       <div className='flex items-center gap-2 mt-4'>
-                <Badge className='text-blue-700 font-bold' variant='ghost'> 12 Positions</Badge>
-                <Badge className='text-[#F83002] font-bold' variant='ghost'> Part Time</Badge>
-                <Badge className='text-[#7209B7] font-bold' variant='ghost'> 24 LPA</Badge>
-            </div>
-     <div className='flex items-center gap-4 mt-4'>
-        <Button onClick={()=> navigate('/description/${jobId}')} variant='outline'className='rounded-3xl cursor-pointer'  >Details</Button>
+        <Badge className='text-blue-700 font-bold' variant='ghost'>{job.position} Positions</Badge>
+        <Badge className='text-[#F83002] font-bold' variant='ghost'> {job.jobType}</Badge>
+        <Badge className='text-[#7209B7] font-bold' variant='ghost'> {job.salary} LPA</Badge>
+      </div>
+      <div className='flex items-center gap-4 mt-4'>
+        <Button onClick={() => navigate(`/description/${job?._id}`)} variant='outline' className='rounded-3xl cursor-pointer'  >Details</Button>
         <Button className='bg-[#7209b7] rounded-3xl'  >Save for Later</Button>
-     </div>
+      </div>
 
     </div>
   )

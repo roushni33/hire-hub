@@ -26,8 +26,8 @@ const Profile = () => {
                             <AvatarImage src="https://thumbs.dreamstime.com/b/d-icon-avatar-cute-smiling-woman-cartoon-hipster-character-people-close-up-portrait-isolated-transparent-png-background-352288894.jpg" />
                         </Avatar>
                         <div>
-                            <h1 className='font-medium text-xl'>{user.fullName}</h1>
-                            <p>{user.profile.bio}</p>
+                            <h1 className='font-medium text-xl'>{user?.fullName}</h1>
+                            <p>{user?.profile?.bio}</p>
                         </div>
                     </div>
 
@@ -37,11 +37,11 @@ const Profile = () => {
                 <div className='my-5'>
                     <div className='flex items-center gap-4 my-2'>
                         <Mail />
-                        <span>{user.email}</span>
+                        <span>{user?.email}</span>
                     </div>
                     <div className='flex items-center gap-4 my-2'>
                         <Contact />
-                        <span>{user.phoneNumber}</span>
+                        <span>{user?.phoneNumber}</span>
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@ const Profile = () => {
                 <div className='grid max-w-sm w-full items-center gap-2 mt-1'>
                     <Label className="text-md font-bold "> Resume </Label>
                     {
-                        isResume ? <a className='text-blue-500 w-full hover:underline cursor-pointer' target='blank ' href='https://docs.google.com/document/u/0/?ftv=1&tgif=c'>Google Resume</a> : <span>NA</span>
+                        isResume ? <a className='text-blue-500 w-full hover:underline cursor-pointer' target='blank ' href={user?.profile?.resume}>{user?.profile?.resumeOriginalName}</a> : <span>NA</span>
                     }
                 </div>
             </div>

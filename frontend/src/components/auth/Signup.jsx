@@ -1,5 +1,5 @@
 import React, { use, useState } from 'react'
-import Navbar from '../shared/navbar'
+import Navbar from '../shared/Navbar'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { RadioGroup } from "../ui/radio-group"
@@ -23,8 +23,8 @@ const Signup = () => {
         role: "",
         file: ""
     });
-    
-    const {loading} = useSelector(store => store.auth);
+
+    const { loading } = useSelector(store => store.auth);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -64,7 +64,7 @@ const Signup = () => {
             }
         } catch (error) {
             toast.error(error.response.data.message)
-        }finally{
+        } finally {
             dispatch(setLoading(false));
         }
     }
@@ -158,7 +158,7 @@ const Signup = () => {
                         </div>
 
                     </div>
-                          
+
                     {
                         loading ?
                             <Button className="w-full my-4 cursor-pointer" disabled={loading}>
