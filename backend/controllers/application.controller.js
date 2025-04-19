@@ -28,10 +28,11 @@ const applyJob = asyncHandler(async (req, res) => {
         applicant: userId,
     })
 
-    job.applications.push(newApplication.id)
+    job.applications.push(newApplication._id)
     await job.save();
+    const updatedJob = await job.populate('applications');
     return res.status(201)
-        .json(new ApiResponse(201, { newApplication }, "Job applied successfully"))
+        .json(new ApiResponse(201, { job:updatedJob }, "Job applied successfully"))
 
 
 })

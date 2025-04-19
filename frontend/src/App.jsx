@@ -7,6 +7,11 @@ import Profile from "./components/Profile"
 import Navbar from "./components/shared/Navbar"
 import JobDescription from "./components/JobDescription"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { setUser } from "./redux/authSlice"
+import axios from "axios"
+import { USER_API_END_POINT } from "./utils/constant"
 
 
 const appRouter = createBrowserRouter([
@@ -55,7 +60,26 @@ const appRouter = createBrowserRouter([
 ])
 
 function App() {
- 
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await axios.get(`${USER_API_END_POINT}/getCurrentUser`, {
+                    withCredentials: true,
+                });
+
+                if (res.data.success) {
+                    dispatch(setUser(res.data.data.user)); // Set user in Redux
+                }
+            } catch (error) {
+                console.log("User not authenticated:", error.response?.data?.message);
+            }
+        };
+
+        fetchUser();
+    }, [dispatch]);
+
 
   return (
     <>

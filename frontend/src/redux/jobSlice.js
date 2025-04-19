@@ -3,7 +3,7 @@ const jobSlice = createSlice({
     name: "job",
     initialState: {
         allJobs: [],
-        singleJob: null
+        singleJob: {}
     },
     reducers: {
         //action

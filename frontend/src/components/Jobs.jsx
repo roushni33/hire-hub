@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux'
 
 
 
-const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 const Jobs = () => {
-     const {allJobs} = useSelector(store => store.jobs);
+    const { allJobs } = useSelector(store => store.jobs);
     return (
         <div>
             <Navbar />
@@ -27,13 +27,13 @@ const Jobs = () => {
                                         allJobs.map((job) => {
                                             return (
                                                 <div key={job?._id} >
-                                                    <Job job={job}/>
+                                                    <Job job={job} />
                                                 </div>
                                             )
                                         })
                                     }
                                 </div>
-                           </div>
+                            </div>
                         )
                     }
                 </div>

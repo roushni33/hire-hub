@@ -3,7 +3,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 
 const isAuthenticated = asyncHandler(async (req, res, next) => {
-    const token = req.cookies.token;
+    const token = await req.cookies.token;
     if (!token) {
         return res
             .status(401)

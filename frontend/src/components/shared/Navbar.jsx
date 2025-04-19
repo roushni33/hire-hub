@@ -34,7 +34,7 @@ const Navbar = () => {
     return (
         <div className='bg-white'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16 px-16 '>
-                <div>
+                <div onClick={() => navigate('/')} className='flex items-center gap-2 cursor-pointer'>
                     <h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Portal</span></h1>
                 </div>
 

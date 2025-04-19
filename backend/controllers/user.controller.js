@@ -144,9 +144,30 @@ const updateProfile = asyncHandler(async (req, res) => {
         )
 })
 
+const getCurrentUser = asyncHandler(async (req, res) => {
+
+    const token = req.cookies.token;
+    if (!token) {
+        throw new ApiError(401, "Not authenticated");
+    }
+
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const user = await User.findById(decoded.userId).select("-password");
+
+    if (!user) {
+        throw new ApiError(404, "User not found");
+    }
+
+    return res.status(200).json(new ApiResponse(200, { user }, "User authenticated"));
+
+});
+
+
+
 export {
     registerUser,
     loginUser,
     logout,
     updateProfile,
+    getCurrentUser
 }
