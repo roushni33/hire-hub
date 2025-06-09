@@ -16,6 +16,7 @@ const isAuthenticated = asyncHandler(async (req, res, next) => {
             new ApiResponse(401, "Invlaid token")
         )
     }
+    
     req.id = decode.userId;
     
     next();

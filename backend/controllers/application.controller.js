@@ -32,7 +32,7 @@ const applyJob = asyncHandler(async (req, res) => {
     await job.save();
     const updatedJob = await job.populate('applications');
     return res.status(201)
-        .json(new ApiResponse(201, { job:updatedJob }, "Job applied successfully"))
+        .json(new ApiResponse(201, { job: updatedJob }, "Job applied successfully"))
 
 
 })
@@ -63,16 +63,17 @@ const getApplicants = asyncHandler(async (req, res) => {
         path: 'applications',
         options: { sort: { createdAt: -1 } },
         populate: ({
-            path: 'applicant'
+            path: 'applicant',
+            select: "-password"
         })
-    });
+    }).select("applications");
 
     if (!job) {
         throw new ApiError(404, "Job not found")
     }
 
     return res.status(200)
-        .json(new ApiResponse(200, { job }))
+        .json(new ApiResponse(200, { job }, 'Applicants fetched successfully'))
 })
 
 const updateStatus = asyncHandler(async (req, res) => {
@@ -92,7 +93,7 @@ const updateStatus = asyncHandler(async (req, res) => {
 
     await application.save();
     return res.status(200)
-        .json(new ApiResponse(200, { application }, "status updated successfully"));
+        .json(new ApiResponse(200, "status updated successfully", { application }));
 
 })
 

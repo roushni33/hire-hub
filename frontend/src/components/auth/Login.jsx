@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Navbar from '../shared/Navbar'
+import React, { useEffect, useState } from 'react'
+import Navbar from '../shared/navbar'
 import { Label } from '../ui/Label'
 import { Input } from '../ui/Input'
 import { toast } from 'sonner'
@@ -21,7 +21,7 @@ const Login = () => {
         role: ""
 
     });
-    const { loading } = useSelector(store => store.auth);
+    const { loading, user } = useSelector(store => store.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -51,6 +51,12 @@ const Login = () => {
             dispatch(setLoading(false));
         }
     }
+
+    useEffect(() => {
+     if(user){
+        navigate("/");
+     }
+    },[user])
 
     return (
         <div>

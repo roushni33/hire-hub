@@ -35,14 +35,29 @@ const Navbar = () => {
         <div className='bg-white'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16 px-16 '>
                 <div onClick={() => navigate('/')} className='flex items-center gap-2 cursor-pointer'>
-                    <h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Portal</span></h1>
+                    <h1 className='text-2xl font-bold'>Hire<span className='text-[#F83002]'>Hub</span></h1>
                 </div>
 
                 <div className='flex items-center gap-10'>
                     <ul className='flex items-center gap-5 font-medium'>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/jobs">Jobs</Link></li>
-                        <li><Link to="/browse">Browse</Link></li>
+                        {
+                            user && user.role === "recruiter" ? (
+                                <>
+                                    <li><Link to="/admin/companies">Campanies</Link></li>
+                                    <li><Link to="/admin/jobs">Jobs</Link></li>
+
+                                </>
+                            ) : (
+                                <>
+
+                                    <li><Link to="/">Home</Link></li>
+                                    <li><Link to="/jobs">Jobs</Link></li>
+                                    <li><Link to="/browse">Browse</Link></li>
+
+                                </>
+                            )
+                        }
+
                     </ul>
 
                     {
@@ -72,10 +87,15 @@ const Navbar = () => {
                                         </div>
 
                                         <div className="flex flex-col  text-gray-600">
-                                            <div className="flex w-fit items-center gap-2 cursor-pointer">
-                                                <User2 />
-                                                <Button variant="link"><Link to="/profile">View Profile</Link></Button>
-                                            </div>
+                                            {
+                                                user && user.role === "student"  && (
+                                                    <div className="flex w-fit items-center gap-2 cursor-pointer">
+                                                    <User2 />
+                                                    <Button variant="link"><Link to="/profile">View Profile</Link></Button>
+                                                </div>
+                                                )
+                                            }
+                                           
                                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                                 <LogOut />
                                                 <Button onClick={logoutHandler} variant="link">Logout</Button>

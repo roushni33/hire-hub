@@ -8,13 +8,15 @@ import { Badge } from './ui/Badge'
 import { Label } from './ui/Label'
 import AppliedJobTable from './AppliedJobTable'
 import UpdateProfileDialog from './UpdateProfileDialog'
+import useGetAppliedJobs from '../hooks/useGetAppliedJob'
 
 const isResume = true
 const Profile = () => {
+    useGetAppliedJobs();
     const [open, setOpen] = useState(false)
 
     const { user } = useSelector(state => state.auth)
-    const skills = user.profile.skills ?? [] // ['React', 'Node', 'Express', 'MongoDB']
+    const skills = user?.profile?.skills ?? [] // ['React', 'Node', 'Express', 'MongoDB']
 
     return (
         <div >

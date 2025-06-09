@@ -1,9 +1,9 @@
-import React, { use, useState } from 'react'
-import Navbar from '../shared/Navbar'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
+import React, { use, useEffect, useState } from 'react'
+import Navbar from '../shared/navbar'
+import { Label } from '../ui/Label'
+import { Input } from '../ui/Input'
 import { RadioGroup } from "../ui/radio-group"
-import { Button } from '../ui/button'
+import { Button } from '../ui/Button'
 import { Form, Link, useNavigate } from 'react-router-dom';
 import { USER_API_END_POINT } from '../../utils/constant';
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,7 +24,7 @@ const Signup = () => {
         file: ""
     });
 
-    const { loading } = useSelector(store => store.auth);
+    const { loading , user} = useSelector(store => store.auth);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -68,6 +68,13 @@ const Signup = () => {
             dispatch(setLoading(false));
         }
     }
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user])
+
 
     return (
         <div>

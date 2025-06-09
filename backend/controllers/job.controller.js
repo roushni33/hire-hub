@@ -2,6 +2,7 @@ import { Job } from "../models/job.model.js"
 import asyncHandler from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
+import { Company } from "../models/company.model.js"
 
 
 const postJob = asyncHandler(async (req, res) => {
@@ -10,6 +11,12 @@ const postJob = asyncHandler(async (req, res) => {
     if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !position || !companyId) {
         throw new ApiError(400, "All fields are required")
     }
+
+    const company = await Company.findById(companyId);
+    if (!company) {
+        throw new ApiError(400, "Invalid companyId: Company does not exist");
+    }
+
 
     const createdJob = await Job.create({
         title,
@@ -20,12 +27,12 @@ const postJob = asyncHandler(async (req, res) => {
         jobType,
         experience: experience,
         position,
-        company: companyId,
+        company: company._id,
         Created_by: userId
     })
     return res
         .status(201)
-        .json(new ApiResponse(201, "New job created successfully", { createdJob }))
+        .json(new ApiResponse(201, { createdJob }, "New job created successfully"))
 })
 
 const getAllJob = asyncHandler(async (req, res) => {
@@ -40,9 +47,7 @@ const getAllJob = asyncHandler(async (req, res) => {
 
     };
 
-    const jobs = await Job.find(query).populate({
-        path: "company"
-    }).sort({ createdAt: -1 });
+    const jobs = await Job.find(query).populate("company","name").sort({ createdAt: -1 });
 
     if (!jobs) {
         throw new ApiError(404, "Job not found.")
@@ -66,7 +71,9 @@ const getJobById = asyncHandler(async (req, res) => {
 
 const getAdminJobs = asyncHandler(async (req, res) => {
     const adminId = req.userId;
-    const jobs = await Job.find({ created_by: adminId })
+    const jobs = await Job.find({ created_by: adminId }).populate({
+        path:'company'
+    })
     if (!jobs) {
         throw new ApiError(404, "Jobs not found")
     }
