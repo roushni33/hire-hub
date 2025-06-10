@@ -30,26 +30,25 @@ const FilterCard = () => {
   }
   useEffect(() => {
     dispatch(setSearchQuery(selectedValue))
- }, [selectedValue])
+  }, [selectedValue])
   return (
-    <div className='w-full bg-white p-5 rounded-lg shadow-md border border-gray-200'>
-      <h1 className='font-bold text-lg'>Filter Jobs</h1>
-      <hr className='mt-3' />
+    <div className='w-full bg-elevated p-5 rounded-lg shadow-md border border-border'>
+      <h1 className='font-bold text-lg text-primary'>Filter Jobs</h1>
+      <hr className='mt-3 border-border' />
       <RadioGroup value={selectedValue} onValueChange={changeHandler}>
         {
           filterData.map((data, index) => (
-            <div >
-              <h1 className='font-bold text-lg '>{data.filterType}</h1>
+            <div key={index}>
+              <h1 className='font-bold text-lg text-secondary'>{data.filterType}</h1>
               {
                 data.array.map((item, idx) => {
                   const itemid = `id${index} - ${idx}`
                   return (
-                    <div className='flex items-center space-x-2 my-2' >
-                      <RadioGroupItem value={item} name={data.filterType} id={itemid}/>
-                      <Label htmlFor={itemid}>{item}</Label>
+                    <div className='flex items-center space-x-2 my-2' key={itemid}>
+                      <RadioGroupItem value={item} name={data.filterType} id={itemid} />
+                      <Label htmlFor={itemid} className='text-muted'>{item}</Label>
                     </div>
                   )
-
                 })
               }
             </div>

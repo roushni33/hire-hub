@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
-import Navbar from '../shared/navbar'
+import Navbar from '../shared/Navbar'
 import { Label } from '../ui/Label'
-import { Input } from '../ui/Input'
+import { Input } from '../ui/input'
 import { RadioGroup } from "../ui/radio-group"
 import { Button } from '../ui/Button'
 import { Form, Link, useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const Signup = () => {
         file: ""
     });
 
-    const { loading , user} = useSelector(store => store.auth);
+    const { loading, user } = useSelector(store => store.auth);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -80,8 +80,8 @@ const Signup = () => {
         <div>
             <Navbar />
             <div className='flex items-center justify-center max-w-7xl mx-auto '>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10 '>
-                    <h1 className='font-bold text-xl mb-5'>Sign Up</h1>
+                <form onSubmit={submitHandler} className='w-1/2 border border-border rounded-md p-4 my-10 bg-elevated '>
+                    <h1 className='font-bold text-xl mb-5 text-primary'>Sign Up</h1>
                     <div className='my-2 space-y-1'>
                         <Label >Full Name</Label>
 
@@ -91,6 +91,7 @@ const Signup = () => {
                             name="fullName"
                             onChange={changeEventHandler}
                             placeholder="Enter your Full Name"
+                            className='border border-border rounded-md bg-primary text-primary placeholder:text-muted'
                         />
                     </div>
 
@@ -102,6 +103,7 @@ const Signup = () => {
                             name="email"
                             onChange={changeEventHandler}
                             placeholder="Enter Your Email"
+                            className='border border-border rounded-md bg-primary text-primary placeholder:text-muted'
                         />
                     </div>
 
@@ -113,6 +115,7 @@ const Signup = () => {
                             name="phoneNumber"
                             onChange={changeEventHandler}
                             placeholder="Enter Phone Number"
+                            className='border border-border rounded-md bg-primary text-primary placeholder:text-muted'
                         />
                     </div>
 
@@ -124,6 +127,7 @@ const Signup = () => {
                             name="password"
                             onChange={changeEventHandler}
                             placeholder="Password"
+                            className='border border-border rounded-md bg-primary text-primary placeholder:text-muted'
                         />
                     </div>
 
@@ -160,7 +164,7 @@ const Signup = () => {
                                 accept="image/*"
                                 type="file"
                                 onChange={changeFileHandler}
-                                className="cursor-pointer"
+                                className="cursor-pointer file:bg-elevated file:text-secondary file:border-none file:rounded-md file:p-2 file:cursor-pointer"
                             />
                         </div>
 
@@ -175,8 +179,8 @@ const Signup = () => {
                     }
 
 
-                    <span className='text-sm'>Already have an account?
-                        <Link to="/Login" className="text-blue-600">Login</Link>
+                    <span className='text-sm text-muted'>Already have an account?
+                        <Link to="/Login" className="text-accent hover:underline">Login</Link>
                     </span>
                 </form>
             </div>

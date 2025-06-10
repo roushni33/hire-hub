@@ -18,6 +18,7 @@ import AdminJobs from "./components/admin/AdminJobs"
 import PostJob from "./components/admin/postJob"
 import Applicants from "./components/admin/Applicants"
 import ProtectedRoute from "./components/admin/ProtectedRoute"
+ import "./modern-dark.css"
 
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../shared/navbar'
 import { Label } from '../ui/Label'
-import { Input } from '../ui/Input'
+import { Input } from '../ui/input'
 import { toast } from 'sonner'
 import { RadioGroup } from "../ui/radio-group"
 import { Button } from '../ui/Button'
@@ -39,7 +39,7 @@ const Login = () => {
                 },
                 withCredentials: true,
             })
-            
+
             if (res.data.success) {
                 dispatch(setUser(res.data.data.loginUser));
                 navigate("/")
@@ -53,45 +53,40 @@ const Login = () => {
     }
 
     useEffect(() => {
-     if(user){
-        navigate("/");
-     }
-    },[user])
+        if (user) {
+            navigate("/");
+        }
+    }, [user])
 
     return (
         <div>
             <Navbar />
             <div className='flex items-center justify-center max-w-7xl mx-auto '>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10 '>
-                    <h1 className='font-bold text-xl mb-5'>Login</h1>
-
-
+                <form onSubmit={submitHandler} className='w-1/2 border border-border rounded-md p-4 my-10 bg-elevated'>
+                    <h1 className='font-bold text-xl mb-5 text-primary'>Login</h1>
                     <div className='my-2 space-y-1'>
-                        <Label>Email</Label>
+                        <Label className='text-primary'>Email</Label>
                         <Input
                             type="email"
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
                             placeholder="Enter email"
+                            className='border border-border rounded-md bg-primary text-primary placeholder:text-muted'
                         />
                     </div>
-
-
-
                     <div className='my-2 space-y-1'>
-                        <Label>Password</Label>
+                        <Label className='text-primary'>Password</Label>
                         <Input
                             type="password"
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
                             placeholder="Enter Password"
+                            className='border border-border rounded-md bg-primary text-primary placeholder:text-muted'
                         />
                     </div>
-
                     <div className='flex items-center justify-between '>
-
                         <RadioGroup defaultValue="Student" className='flex items-center gap-4 my-5'>
                             <div className="flex items-center space-x-2 ">
                                 <Input
@@ -100,9 +95,9 @@ const Login = () => {
                                     value="student"
                                     checked={input.role === 'student'}
                                     onChange={changeEventHandler}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer accent"
                                 />
-                                <Label htmlFor="student">Student</Label>
+                                <Label htmlFor="student" className='text-secondary'>Student</Label>
                             </div>
                             <div className="flex items-center space-x-2 ">
                                 <Input
@@ -111,14 +106,11 @@ const Login = () => {
                                     value="recruiter"
                                     checked={input.role === 'recruiter'}
                                     onChange={changeEventHandler}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer accent"
                                 />
-                                <Label htmlFor="Recruiter">Recruiter</Label>
+                                <Label htmlFor="Recruiter" className='text-secondary'>Recruiter</Label>
                             </div>
                         </RadioGroup>
-
-
-
                     </div>
                     {
                         loading ?
@@ -127,9 +119,8 @@ const Login = () => {
                                 Please wait </Button>
                             : <Button type="submit" className="w-full my-4 cursor-pointer">Login</Button>
                     }
-
-                    <span className='text-sm'>Don't have an account?
-                        <Link to="/Signup" className="text-blue-600">Signup</Link>
+                    <span className='text-sm text-muted'>Don't have an account?
+                        <Link to="/Signup" className="text-accent hover:underline">Signup</Link>
                     </span>
                 </form>
             </div>

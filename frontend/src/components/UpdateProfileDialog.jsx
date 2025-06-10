@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Dialog,  DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/Dialog'
-import { Label } from './ui/label'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/Dialog'
+import { Label } from './ui/Label'
 import { Input } from './ui/input'
-import { Button } from './ui/button'
+import { Button } from './ui/Button'
 import { Loader2 } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
@@ -73,83 +73,82 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     return (
         <div>
             <Dialog open={open} >
-            
-                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto' onClick={() => setOpen(false)} >
+
+                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto bg-elevated border border-border text-primary' onClick={() => setOpen(false)} >
                     <DialogHeader>
                         <DialogTitle>
                             Update Profile
-                            
+
                         </DialogTitle>
-                        
+
                     </DialogHeader>
                     <form onSubmit={submitHandler}>
                         <div className='grid gap-4 py-4'>
-                            <Label className="text-md font`-bold text-right" htmlFor="name" > Full Name </Label>
+                            <Label className="text-md font`-bold text-primary text-right" htmlFor="name" > Full Name </Label>
                             <Input
                                 type="text"
-                                id='name' className='border border-gray-300 rounded-md p-2'
+                                id='name' className='border border-border rounded-md p-2 bg-primary text-primary placeholder:text-muted'
                                 name="fullName"
                                 placeholder='Enter your full name'
                                 value={input.fullName}
                                 onChange={changeEventHandler}
                             />
-                            <Label className="text-md font-bold text-right" htmlFor="email" > Email </Label>
+                            <Label className="text-md font-bold text-primary text-right" htmlFor="email" > Email </Label>
                             <Input
                                 type="email"
                                 id='email'
                                 name="email"
-                                className='border border-gray-300 rounded-md p-2'
+                                className='border border-border rounded-md p-2 bg-primary text-primary placeholder:text-muted'
                                 placeholder='Enter your email'
                                 value={input.email}
                                 onChange={changeEventHandler}
                             />
-                            <Label className="text-md font-bold text-right" htmlFor="phone" > Phone Number </Label>
+                            <Label className="text-md font-bold text-primary text-right" htmlFor="phone" > Phone Number </Label>
                             <Input
                                 type="text"
                                 value={input.phoneNumber}
                                 id='phone'
                                 name="phoneNumber"
-                                className='border border-gray-300 rounded-md p-2'
+                                className='border border-border rounded-md p-2 bg-primary text-primary placeholder:text-muted'
                                 placeholder='Enter your phone number'
                                 onChange={changeEventHandler}
                             />
-                            <Label className="text-md font-bold text-right" htmlFor="skills" > Skills </Label>
+                            <Label className="text-md font-bold text-primary text-right" htmlFor="skills" > Skills </Label>
                             <Input
                                 type="text"
                                 value={input.skills}
                                 id='skills'
                                 name="skills"
-                                className='border border-gray-300 rounded-md p-2'
+                                className='border border-border rounded-md p-2 bg-primary text-primary placeholder:text-muted'
                                 placeholder='Enter your skills'
                                 onChange={changeEventHandler}
                             />
-                            <Label className="text-md font-bold text-right" htmlFor="bio" > Bio </Label>
+                            <Label className="text-md font-bold text-primary text-right" htmlFor="bio" > Bio </Label>
                             <Input
                                 type="text"
                                 value={input.bio}
                                 id='bio'
                                 name="bio"
-                                className='border border-gray-300 rounded-md p-2'
+                                className='border border-border rounded-md p-2 bg-primary text-primary placeholder:text-muted'
                                 placeholder='Bio'
                                 onChange={changeEventHandler}
                             />
-                            <Label className="text-md font-bold text-right" htmlFor="resume" > Resume </Label>
+                            <Label className="text-md font-bold text-primary text-right" htmlFor="resume" > Resume </Label>
                             <Input
                                 type="file"
                                 id='resume'
                                 name='file'
                                 accept='application/pdf'
                                 onChange={fileChangeHandler}
-                                className='border border-gray-300 rounded-md p-2'
+                                className='border border-border rounded-md p-2 bg-primary text-primary file:bg-elevated file:text-secondary file:border-none file:rounded-md file:p-2 file:cursor-pointer placeholder:text-muted'
                                 placeholder='Upload your resume'
-
                             />
 
                         </div>
                         <DialogFooter>
-                        
-                               
-                        {
+
+
+                            {
                                 loading ?
                                     <Button className="w-full my-4 cursor-pointer" disabled={loading}>
                                         <Loader2 className='mr-2 h-4 w-4 animate-spin' />
@@ -157,9 +156,9 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     : <Button type="submit" className="w-full my-4 cursor-pointer">Update</Button>
                             }
 
-                        
-                            
-                            
+
+
+
                         </DialogFooter>
                     </form>
                 </DialogContent>

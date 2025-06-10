@@ -27,11 +27,11 @@ const AdminJobsTable = () => {
                     A list of your recent posted jobs.
                 </TableCaption>
                 <TableHeader>
-                    <TableRow>
-                        <TableHead>Company Name</TableHead>
-                        <TableHead>Role</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
+                    <TableRow className="bg-elevated border-b border-border">
+                        <TableHead className="text-accent font-semibold">Company Name</TableHead>
+                        <TableHead className="text-accent font-semibold">Role</TableHead>
+                        <TableHead className="text-accent font-semibold">Date</TableHead>
+                        <TableHead className="text-right text-accent font-semibold">Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -45,14 +45,22 @@ const AdminJobsTable = () => {
                                 <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
                                 <TableCell className="text-right cursor-pointer">
                                     <Popover>
-                                        <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
-                                        <PopoverContent className="w-32">
-                                            <div onClick={() => navigate(`/admin/companies/${job._id}`)} className='flex items-center gap-2 cursor-pointer w-fit'>
-                                                <Edit2 className='w-4' />
-                                                <span className='ml-2'>Edit</span>
+                                        <PopoverTrigger>
+                                            <MoreHorizontal className="text-muted hover:text-accent transition-colors" />
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-32 bg-elevated text-primary border-border shadow-lg">
+                                            <div
+                                                onClick={() => navigate(`/admin/companies/${job._id}`)}
+                                                className="flex items-center gap-2 cursor-pointer w-fit hover:bg-accent/10 rounded px-2 py-1 transition-colors"
+                                            >
+                                                <Edit2 className="w-4 text-accent" />
+                                                <span className="ml-2">Edit</span>
                                             </div>
-                                            <div onClick={() => navigate(`/admin/jobs/${job._id}/applicants`)} className='flex items-center w-fit gap-2 cursor-pointer mt-2'>
-                                                <Eye className='w-4'/>
+                                            <div
+                                                onClick={() => navigate(`/admin/jobs/${job._id}/applicants`)}
+                                                className="flex items-center w-fit gap-2 cursor-pointer mt-2 hover:bg-accent/10 rounded px-2 py-1 transition-colors"
+                                            >
+                                                <Eye className="w-4 text-accent" />
                                                 <span>Applicants</span>
                                             </div>
                                         </PopoverContent>

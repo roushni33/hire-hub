@@ -1,0 +1,33 @@
+:root {
+  --bg-primary: #21222c;
+  --bg-secondary: #393a4b;
+  --bg-elevated: #44475a;
+  --text-primary: #f8f8f2;
+  --text-secondary: #caa9fa;
+  --text-muted: #8a8ab8;
+  --accent: #6272fa;         /* Blue/Purple accent */
+  --accent-hover: #7d8cff;   /* Lighter blue/purple for hover */
+  --button-bg: #393a4b;
+  --button-hover: #6272a4;
+  --border: #6272a4;
+  --popover-bg: #282a36;
+  --popover-shadow: 0 4px 32px 0 rgba(40, 42, 54, 0.45);
+}
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.bg-primary { background: var(--bg-primary) !important; }
+.bg-secondary { background: var(--bg-secondary) !important; }
+.bg-elevated { background: var(--bg-elevated) !important; }
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.accent { color: var(--accent) !important; }
+.border { border-color: var(--border) !important; }
+.button-bg { background: var(--button-bg) !important; }
+.button-hover:hover { background: var(--button-hover) !important; }
+
+/* Popover and card styles */
+.popover-bg { background: var(--popover-bg) !important; box-shadow: var(--popover-shadow) !important; }

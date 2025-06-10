@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { Label } from '../ui/Label'
-import { Input } from '../ui/Input'
+import { Input } from '../ui/input'
 import { Button } from '../ui/Button'
 import { useSelector } from 'react-redux'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/Select'
@@ -41,7 +41,7 @@ const PostJob = () => {
 
     const selectChangeHandler = (value) => {
         const selectedCompany = companies.find((company) => company.name.toLowerCase() === value);
-       
+
         setInput({ ...input, companyId: selectedCompany._id });
     }
 
@@ -82,30 +82,30 @@ const PostJob = () => {
                     <div className='grid grid-cols-2 gap-2'>
 
                         <div>
-                            <Label>Title</Label>
+                            <Label className="text-primary">Title</Label>
                             <Input
                                 type='text'
                                 name="title"
                                 value={input.title}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
                         <div>
-                            <Label>Description</Label>
+                            <Label className="text-primary">Description</Label>
                             <Input
                                 type='text'
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
 
                         <div>
-                            <Label>Requirements</Label>
+                            <Label className="text-primary" >Requirements</Label>
                             <Input
                                 type='text'
                                 name="requirements"
@@ -117,61 +117,61 @@ const PostJob = () => {
 
 
                         <div>
-                            <Label>Salary</Label>
+                            <Label className="text-primary">Salary</Label>
                             <Input
                                 type='text'
                                 name="salary"
                                 value={input.salary}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
 
                         <div>
-                            <Label>Location</Label>
+                            <Label className="text-primary">Location</Label>
                             <Input
                                 type='text'
                                 name="location"
                                 value={input.location}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
 
                         <div>
-                            <Label>Job Type</Label>
+                            <Label className="text-primary">Job Type</Label>
                             <Input
                                 type='text'
                                 name="jobType"
                                 value={input.jobType}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
 
 
                         <div>
-                            <Label>Experience</Label>
+                            <Label className="text-primary">Experience</Label>
                             <Input
                                 type='text'
                                 name="experience"
                                 value={input.experience}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
                         <div>
-                            <Label>No of Position</Label>
+                            <Label className="text-primary">No of Position</Label>
                             <Input
                                 type='Number'
                                 name="position"
                                 value={input.position}
                                 onChange={changeEventHandler}
-                                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
+                                className='my-1 bg-main text-primary border-border placeholder:text-muted focus:ring-accent focus:border-accent'
                             />
                         </div>
 
@@ -207,7 +207,12 @@ const PostJob = () => {
                                 Please wait
                             </Button>
                         ) : (
-                            <Button type="submit" className="w-full my-4 cursor-pointer">Post New Job</Button>
+                            <Button
+                                type="submit"
+                                className="w-full my-4 cursor-pointer bg-accent text-accent-foreground hover:bg-accent/80"
+                            >
+                                Post New Job
+                            </Button>
                         )
                     }
 
