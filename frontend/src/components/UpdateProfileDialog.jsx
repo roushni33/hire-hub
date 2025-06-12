@@ -24,6 +24,19 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
     });
 
+    React.useEffect(() => {
+  if (open) {
+    setInput({
+      fullName: user?.fullName || "",
+      email: user?.email || "",
+      phoneNumber: user?.phoneNumber || "",
+      bio: user?.profile?.bio || "",
+      skills: (user?.profile.skills && Array.isArray(user.profile.skills)) ? user.profile.skills.join(", ") : "",
+      file: user?.profile?.resume || ""
+    });
+  }
+}, [open, user]);
+
     const dispatch = useDispatch();
 
     const changeEventHandler = (e) => {
@@ -57,8 +70,9 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             });
 
             if (res.data.success) {
-                dispatch(setUser(res.data.data.user.user));
+                dispatch(setUser(res.data.data.user));
                 toast.success(res.data.message);
+                 setOpen(false);
             }
 
         } catch (error) {
@@ -66,15 +80,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             toast.error(error.response.data.message || "Something went wrong!");
         } finally {
             setLoading(false)
-            setOpen(false)
         }
     }
 
     return (
         <div>
-            <Dialog open={open} >
+            <Dialog open={open} onOpenChange={setOpen} >
 
-                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto bg-elevated border border-border text-primary' onClick={() => setOpen(false)} >
+                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto bg-elevated border border-border text-primary'  >
                     <DialogHeader>
                         <DialogTitle>
                             Update Profile

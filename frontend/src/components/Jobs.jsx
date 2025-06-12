@@ -4,11 +4,13 @@ import FilterCard from './FilterCard'
 import Job from './Job'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
+import useGetAllJobs from '../hooks/useGetAllJobs'
 
 
 
 
 const Jobs = () => {
+    useGetAllJobs();
     const { allJobs, searchQuery } = useSelector(store => store.jobs);
     const [filterJobs, setFilterJobs] = useState(allJobs);
     useEffect(() => {

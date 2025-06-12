@@ -6,9 +6,9 @@ import Browse from "./components/Browse"
 import Profile from "./components/Profile"
 import Companies from "./components/admin/Companies"
 import JobDescription from "./components/JobDescription"
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { setUser } from "./redux/authSlice"
 import axios from "axios"
 import { USER_API_END_POINT } from "./utils/constant"
@@ -18,79 +18,79 @@ import AdminJobs from "./components/admin/AdminJobs"
 import PostJob from "./components/admin/PostJob"
 import Applicants from "./components/admin/Applicants"
 import ProtectedRoute from "./components/admin/ProtectedRoute"
- import "./modern-dark.css"
+import "./modern-dark.css"
 
 
 
 
 const appRouter = createBrowserRouter([
   {
-    path:'/',
-    element:<Home/>
+    path: '/',
+    element: <Home />
   },
 
   {
-    path:'/login',
-    element:<Login/>
+    path: '/login',
+    element: <Login />
   },
 
   {
-    path:'/signup',
-    element:<Signup/>
+    path: '/signup',
+    element: <Signup />
   },
 
   {
-    path:'/jobs',
-    element:<Jobs/>
+    path: '/jobs',
+    element: <Jobs />
   },
 
   {
-    path:'/description/:id',
-    element:<JobDescription/>
-  },
-  
-  {
-    path:'/browse',
-    element:<Browse/>
+    path: '/description/:id',
+    element: <JobDescription />
   },
 
   {
-    path:'/profile',
-    element:<Profile/>
+    path: '/browse',
+    element: <Browse />
   },
-  
+
+  {
+    path: '/profile',
+    element: <Profile />
+  },
+
   // for admin routes
 
   {
-    path:'/admin/companies',
-    element:<ProtectedRoute><Companies/></ProtectedRoute>
+    path: '/admin/companies',
+    element: <ProtectedRoute><Companies /></ProtectedRoute>
   },
 
   {
-    path:'/admin/companies/create',
-    element:<ProtectedRoute><CompanyCreate/></ProtectedRoute>
-  },
-  
-  {
-    path:'/admin/companies/:id',
-    element:<ProtectedRoute><CompanySetup/></ProtectedRoute>
+    path: '/admin/companies/create',
+    element: <ProtectedRoute><CompanyCreate /></ProtectedRoute>
   },
 
   {
-    path:'/admin/jobs',
-    element:<ProtectedRoute><AdminJobs/></ProtectedRoute>
+    path: '/admin/companies/:id',
+    element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
   },
 
   {
-    path:'/admin/jobs/create',
-    element:<ProtectedRoute><PostJob/></ProtectedRoute>
+    path: '/admin/jobs',
+    element: <ProtectedRoute><AdminJobs /></ProtectedRoute>
   },
-  
- {
-    path:'/admin/jobs/:id/applicants',
-    element:<ProtectedRoute><Applicants/></ProtectedRoute>
+
+  {
+    path: '/admin/jobs/create',
+    element: <ProtectedRoute><PostJob /></ProtectedRoute>
   },
-  
+
+  {
+    path: '/admin/jobs/:id/applicants',
+    element: <ProtectedRoute><Applicants /></ProtectedRoute>
+  },
+
 
 
 
@@ -99,34 +99,34 @@ const appRouter = createBrowserRouter([
 
 function App() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const res = await axios.get(`${USER_API_END_POINT}/getCurrentUser`, {
-                    withCredentials: true,
-                });
+ useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(`${USER_API_END_POINT}/getCurrentUser`, {
+          withCredentials: true,
+        });
+        if (res.data.success) {
+          dispatch(setUser(res.data.data.user));
+        }
+      } catch (error) {
+        // Not authenticated
+      } finally {
+        setLoading(false);
+      }
+    };
 
-                if (res.data.success) {
-                    dispatch(setUser(res.data.data.user)); // Set user in Redux
-                }
-            } catch (error) {
-                console.log("User not authenticated:", error.response?.data?.message);
-            }
-        };
+    fetchUser();
+  }, [dispatch]);
 
-        fetchUser();
-    }, [dispatch]);
-
+  if (loading) return <div />; // or a spinner
 
   return (
     <>
-      <RouterProvider router={appRouter}/>
-      
+      <RouterProvider router={appRouter} />
     </>
-    
-    
-  )
+  );
 }
 
 export default App
