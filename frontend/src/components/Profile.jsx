@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Navbar from './shared/navbar'
+import Navbar from './shared/Navbar'
 import { Avatar, AvatarImage } from './ui/Avatar'
 import { Button } from './ui/Button'
 import { Contact, Mail, Pen } from 'lucide-react'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { Label } from '../ui/Label'
-import { Input } from '../ui/input'
+import { Input } from '../ui/Input'
 import { Button } from '../ui/Button'
 import { useSelector } from 'react-redux'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/Select'

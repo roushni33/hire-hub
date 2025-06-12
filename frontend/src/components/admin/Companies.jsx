@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../shared/navbar'
-import { Input } from '../ui/input'
+import Navbar from '../shared/Navbar'
+import { Input } from '../ui/Input'
 import { Button } from '../ui/Button'
 import CompaniesTable from './CompaniesTable'
 import { useNavigate } from 'react-router-dom'

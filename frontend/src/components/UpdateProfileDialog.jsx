@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/Dialog'
 import { Label } from './ui/Label'
-import { Input } from './ui/input'
+import { Input } from './ui/Input'
 import { Button } from './ui/Button'
 import { Loader2 } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
