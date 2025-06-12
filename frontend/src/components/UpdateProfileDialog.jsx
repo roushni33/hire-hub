@@ -9,9 +9,11 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import { USER_API_END_POINT } from '../utils/constant'
 import { setUser } from '../redux/authSlice'
+import useGetAppliedJobs from '../hooks/useGetAppliedJob'
 
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
+    useGetAppliedJobs();
     const [loading, setLoading] = useState(false);
     const { user } = useSelector(store => store.auth);
     const [input, setInput] = useState({
@@ -57,7 +59,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             });
 
             if (res.data.success) {
-                dispatch(setUser(res.data.data.user.user));
+                dispatch(setUser(res.data.data.user));
                 toast.success(res.data.message);
             }
 
@@ -66,15 +68,15 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             toast.error(error.response.data.message || "Something went wrong!");
         } finally {
             setLoading(false)
-            setOpen(false)
+            
         }
     }
 
     return (
         <div>
-            <Dialog open={open} >
+            <Dialog open={open} onOpenChange={setOpen} >
             
-                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto' onClick={() => setOpen(false)} >
+                <DialogContent className='sm:max-w-[425px] max-h-[80vh] overflow-y-auto'  >
                     <DialogHeader>
                         <DialogTitle>
                             Update Profile
