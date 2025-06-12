@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../shared/navbar'
+import Navbar from '../shared/Navbar'
 import { Label } from '../ui/Label'
 import { Input } from '../ui/Input'
 import { toast } from 'sonner'
