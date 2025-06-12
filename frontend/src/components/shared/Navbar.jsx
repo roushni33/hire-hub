@@ -1,6 +1,6 @@
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
+import { Avatar, AvatarImage } from "@/components/ui/Avatar";
+import { Button } from "@/components/ui/Button";
 import { User2, LogOut } from "lucide-react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";

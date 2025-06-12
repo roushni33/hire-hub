@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import { RadioGroup, RadioGroupItem } from './ui/radio-group'
+import { RadioGroup, RadioGroupItem } from './ui/Radio-group'
 import { Label } from './ui/Label'
 import { useDispatch } from 'react-redux'
 import { setSearchQuery } from '../redux/jobSlice'
