@@ -26,9 +26,7 @@ const corsOption = {
 app.use(cors(corsOption));
 
 const PORT = process.env.PORT || 3000;
-app.use("/" ,(req,res) => {
-    res.send("working");
-})
+
 app.use("/api/v1/user" , userRouter);
 app.use("/api/v1/company" , companyRouter);
 app.use("/api/v1/job" , jobRouter);
