@@ -18,6 +18,7 @@ import AdminJobs from "./components/admin/AdminJobs"
 import PostJob from "./components/admin/PostJob"
 import Applicants from "./components/admin/Applicants"
 import ProtectedRoute from "./components/admin/ProtectedRoute"
+import ProtectedUserRoute from "./components/auth/ProtectedUserRoute"
 import "./modern-dark.css"
 
 
@@ -41,7 +42,7 @@ const appRouter = createBrowserRouter([
 
   {
     path: '/jobs',
-    element: <Jobs />
+    element: <ProtectedUserRoute><Jobs /></ProtectedUserRoute>
   },
 
   {
@@ -51,7 +52,7 @@ const appRouter = createBrowserRouter([
 
   {
     path: '/browse',
-    element: <Browse />
+    element: <ProtectedUserRoute><Browse /></ProtectedUserRoute>
   },
 
   {
